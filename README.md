@@ -5,6 +5,9 @@
 DejizoToaster はクリップボードの英単語の意味をトーストで表示するアプリケーションです。「デ辞蔵 REST版API」を使用しています。
 [toast-alc](https://gist.github.com/penguin2716/2592c55528afe80a1f24)からアイデアを頂きました。
 
+## ダウンロード
+[Latest Release](https://github.com/suna-pan/DejizoToaster/releases/latest)
+
 ## 動作環境
 
 * Windows 8 以降
