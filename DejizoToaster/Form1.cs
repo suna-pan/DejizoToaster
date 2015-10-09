@@ -32,17 +32,34 @@ namespace DejizoToaster
             if (input == "")
             {
                 await ShowToastAsync("エラー", "クリップボードにテキストがありません。");
+                this.Close();
                 return;
             }
 
+            string id = "";
+            object res;
+            string head = "";
+            string body = "";
+            try
+            {
+                id = LoopUp(input);
+                if(id == "")
+                {
+                    await ShowToastAsync(input, "辞書項目が見つかりませんでした。");
+                    this.Close();
+                    return;
+                }
+                res = GetDetail(id);
 
-            var id = LoopUp(input);
-            Debug.WriteLine(id);
-            var res = GetDetail(id);
-            var head = (string)res.GetType().GetProperty("Word").GetValue(res, null);
-            var body = (string)res.GetType().GetProperty("Body").GetValue(res, null);
-            Debug.WriteLine(head);
-            Debug.WriteLine(body);
+                head = (string)res.GetType().GetProperty("Word").GetValue(res, null);
+                body = (string)res.GetType().GetProperty("Body").GetValue(res, null);
+            }
+            catch (Exception exp)
+            {
+                await ShowToastAsync("エラー：" + exp.GetType().FullName, exp.Message);
+                return;
+            }
+
 
             var userRes = await ShowToastAsync(head, body);
             if (userRes == "Activated")
