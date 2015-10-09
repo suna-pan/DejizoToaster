@@ -21,16 +21,34 @@ namespace DejizoToaster
         }
 
 
-        private void Form1_Shown(object sender, EventArgs e)
+        private async void Form1_Shown(object sender, EventArgs e)
         {
-            var id = LoopUp("move");
+            var input = "";
+            if (Clipboard.ContainsText())
+            {
+                input = Clipboard.GetText();
+            }
+
+            if (input == "")
+            {
+                await ShowToastAsync("エラー", "クリップボードにテキストがありません。");
+                return;
+            }
+
+
+            var id = LoopUp(input);
             Debug.WriteLine(id);
             var res = GetDetail(id);
             var head = (string)res.GetType().GetProperty("Word").GetValue(res, null);
             var body = (string)res.GetType().GetProperty("Body").GetValue(res, null);
             Debug.WriteLine(head);
             Debug.WriteLine(body);
-            ShowToastAsync(head, body);
+
+            var userRes = await ShowToastAsync(head, body);
+            if (userRes == "Activated")
+            {
+                Process.Start("http://ejje.weblio.jp/content/" + input);
+            }
             this.Close();
         }
 
@@ -115,6 +133,7 @@ namespace DejizoToaster
                 ShortcutFileName = "DejizoToaster.lnk",
                 ShortcutTargetFilePath = Assembly.GetExecutingAssembly().Location,
                 AppId = "DejizoToaster.WinForms",
+                ToastAudio = ToastAudio.Silent
             };
 
             var result = await ToastManager.ShowAsync(request);
