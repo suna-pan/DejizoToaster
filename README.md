@@ -1,27 +1,29 @@
 # DejizoToaster
 
-DejizoToaster ‚ÍƒNƒŠƒbƒvƒ{[ƒh‚Ì‰p’PŒê‚ÌˆÓ–¡‚ğƒg[ƒXƒg‚Å•\¦‚·‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Å‚·Buƒf«‘  REST”ÅAPIv‚ğg—p‚µ‚Ä‚¢‚Ü‚·B
-[toast-alc](https://gist.github.com/penguin2716/2592c55528afe80a1f24)‚©‚çƒAƒCƒfƒA‚ğ’¸‚«‚Ü‚µ‚½B
+![screenshot](https://raw.githubusercontent.com/suna-pan/DejizoToaster/master/screenshot.png)
 
-## “®ìŠÂ‹«
+DejizoToaster ã¯ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã®è‹±å˜èªã®æ„å‘³ã‚’ãƒˆãƒ¼ã‚¹ãƒˆã§è¡¨ç¤ºã™ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã§ã™ã€‚ã€Œãƒ‡è¾è”µ RESTç‰ˆAPIã€ã‚’ä½¿ç”¨ã—ã¦ã„ã¾ã™ã€‚
+[toast-alc](https://gist.github.com/penguin2716/2592c55528afe80a1f24)ã‹ã‚‰ã‚¢ã‚¤ãƒ‡ã‚¢ã‚’é ‚ãã¾ã—ãŸã€‚
 
-* Windows 8 ˆÈ~
+## å‹•ä½œç’°å¢ƒ
 
-## g‚¢•û
-ƒNƒŠƒbƒvƒ{[ƒh‚É‰p’PŒê‚ª“ü‚Á‚½ó‘Ô‚ÅuDejizoToaster.exev‚ğ‹N“®‚·‚é‚Æƒg[ƒXƒg‚ªo‚Ü‚·B
+* Windows 8 ä»¥é™
 
-uƒ^ƒXƒNƒo[‚Éƒsƒ“—¯‚ßv‚µ‚Ä `Windows ƒL[ + ”šƒL[` ‚Å‹N“®‚µ‚½‚èC
-ƒVƒ‡[ƒgƒJƒbƒgƒL[‚ğì‚ê‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Æˆê‚Ég‚Á‚½‚è‚·‚é‚Æ‚¢‚¢‚Æv‚¢‚Ü‚·B
+## ä½¿ã„æ–¹
+ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«è‹±å˜èªãŒå…¥ã£ãŸçŠ¶æ…‹ã§ã€ŒDejizoToaster.exeã€ã‚’èµ·å‹•ã™ã‚‹ã¨ãƒˆãƒ¼ã‚¹ãƒˆãŒå‡ºã¾ã™ã€‚
 
-## ƒ‰ƒCƒZƒ“ƒX
+ã€Œã‚¿ã‚¹ã‚¯ãƒãƒ¼ã«ãƒ”ãƒ³ç•™ã‚ã€ã—ã¦ `Windows ã‚­ãƒ¼ + æ•°å­—ã‚­ãƒ¼` ã§èµ·å‹•ã—ãŸã‚Šï¼Œ
+ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ã‚’ä½œã‚Œã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã¨ä¸€ç·’ã«ä½¿ã£ãŸã‚Šã™ã‚‹ã¨ã„ã„ã¨æ€ã„ã¾ã™ã€‚
+
+## ãƒ©ã‚¤ã‚»ãƒ³ã‚¹
 
 Copyright (c) 2015 suna-pan  
 Released under the MIT license  
 http://opensource.org/licenses/mit-license.php
 
-## g—pƒ‰ƒCƒuƒ‰ƒŠ
+## ä½¿ç”¨ãƒ©ã‚¤ãƒ–ãƒ©ãƒª
 ### [Desktop Toast](https://github.com/emoacht/DesktopToast)
 
 * The MIT License (MIT)
 * Copyright (c) 2014-2015 EMO
-* [ƒ‰ƒCƒZƒ“ƒX‘S•¶](https://github.com/emoacht/DesktopToast/blob/master/LICENSE.txt)
+* [ãƒ©ã‚¤ã‚»ãƒ³ã‚¹å…¨æ–‡](https://github.com/emoacht/DesktopToast/blob/master/LICENSE.txt)
