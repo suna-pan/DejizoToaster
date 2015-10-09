@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DesktopToast;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -6,6 +7,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -21,14 +23,20 @@ namespace DejizoToaster
         public Form1()
         {
             InitializeComponent();
+        }
 
-            var id = LoopUp("toast");
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            var id = LoopUp("move");
             Debug.WriteLine(id);
             var res = GetDetail(id);
-            var head = res.GetType().GetProperty("Word").GetValue(res, null);
-            var body = res.GetType().GetProperty("Body").GetValue(res, null);
+            var head = (string)res.GetType().GetProperty("Word").GetValue(res, null);
+            var body = (string)res.GetType().GetProperty("Body").GetValue(res, null);
             Debug.WriteLine(head);
             Debug.WriteLine(body);
+            ShowToastAsync(head, body);
+            this.Close();
         }
 
 
@@ -101,5 +109,23 @@ namespace DejizoToaster
 
             return CallAPI(queryUri);
         }
+
+
+        private async Task<string> ShowToastAsync(string HeadLine, string Body)
+        {
+            var request = new ToastRequest
+            {
+                ToastHeadline = HeadLine,
+                ToastBody = Body,
+                ShortcutFileName = "DejizoToaster.lnk",
+                ShortcutTargetFilePath = Assembly.GetExecutingAssembly().Location,
+                AppId = "DejizoToaster.WinForms",
+            };
+
+            var result = await ToastManager.ShowAsync(request);
+
+            return result.ToString();
+        }
+
     }
 }
