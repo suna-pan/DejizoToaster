@@ -15,7 +15,9 @@ DejizoToaster はクリップボードの英単語の意味をトーストで表示するアプリケーション
 
 ## ライセンス
 
-The MIT License (MIT)
+Copyright (c) 2015 suna-pan
+Released under the MIT license
+http://opensource.org/licenses/mit-license.php
 
 ## 使用ライブラリ
 ### [Desktop Toast](https://github.com/emoacht/DesktopToast)
