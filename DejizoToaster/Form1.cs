@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
@@ -23,20 +24,41 @@ namespace DejizoToaster
 
             var id = LoopUp("toast");
             Debug.WriteLine(id);
+            var res = GetDetail(id);
+            var head = res.GetType().GetProperty("Word").GetValue(res, null);
+            var body = res.GetType().GetProperty("Body").GetValue(res, null);
+            Debug.WriteLine(head);
+            Debug.WriteLine(body);
         }
 
 
-        private int LoopUp(string word)
+        private string LoopUp(string word)
         {
             var xml = DejizoSearch(word);
             var ns = xml.Name.Namespace;
 
             var itemCount = xml.Descendants(ns + "ItemCount").First().Value;
             if (Int32.Parse(itemCount) < 1)
-                return -1;
+                return "";
 
             var itemId = xml.Descendants(ns + "ItemID").First().Value;
-            return Int32.Parse(itemId);
+            return itemId;
+        }
+
+
+        private object GetDetail(string id)
+        {
+            var xml = DejizoGet(id);
+            var ns = xml.Name.Namespace;
+
+            char[] tc= { '\n', '\t', ' ' };
+            var word = xml.Descendants(ns + "Head").First().Value;
+            var body = xml.Descendants(ns + "Body").First().Value;
+            return new
+            {
+                Word = Regex.Replace(word.Trim(tc), "\\s+", " "), 
+                Body = Regex.Replace(body.Trim(tc), "\\s+", " ")
+            };
         }
 
 
@@ -51,6 +73,16 @@ namespace DejizoToaster
         }
 
 
+        private XElement CallAPI(string queryUri)
+        {
+            var res = HttpGet(queryUri);
+            var resReader = XmlReader.Create(res.GetResponseStream());
+            var docs = XElement.Load(resReader);
+
+            return docs;
+        }
+
+
         private XElement DejizoSearch(string word)
         {
             var encWord = HttpUtility.UrlEncode(word);
@@ -58,11 +90,16 @@ namespace DejizoToaster
                            + encWord + "&Scope=HEADWORD&Match=STARTWITH&Merge=AND&Prof=XHTML&PageSize=1&PageIndex=0";
             Debug.WriteLine(queryUri);
 
-            var res = HttpGet(queryUri);
-            var resReader = XmlReader.Create(res.GetResponseStream());
-            var docs = XElement.Load(resReader);
+            return CallAPI(queryUri);
+        }
 
-            return docs;
+
+        private XElement DejizoGet(string id)
+        {
+            var queryUri = "http://public.dejizo.jp/NetDicV09.asmx/GetDicItemLite?Dic=EJdict&Item=" + id + "&Loc=&Prof=XHTML";
+            Debug.WriteLine(queryUri);
+
+            return CallAPI(queryUri);
         }
     }
 }
